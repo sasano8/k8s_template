@@ -9,7 +9,7 @@ spec:
     name: http
   type: LoadBalancer
   selector:
-    app: web
+    app: app-python
 ---
 apiVersion: apps/v1
 kind: Deployment

@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
 - app-python.yaml
-# - app-go.yaml
+- app-go.yaml
