@@ -1,0 +1,43 @@
+apiVersion: skaffold/v4beta4
+kind: Config
+build:
+  local:
+    push: true
+    useDockerCLI: true
+  artifacts:
+  - image: 192.168.0.10:32000/mykubeapp1
+    context: ./apps/app1/
+    docker:
+      dockerfile: ./apps/app1/Dockerfile
+    # useBuildkit: true
+# manifests:
+#   rawYaml:
+#     - k8s/web.yaml
+
+# manifests:
+#    kustomize:
+#       paths:
+#       # kustomize.yaml を含むディレクトリを指定
+#        - base
+#        - development
+#        - production
+
+# kustomize build overlays/development/ > dev-k8s.yaml
+
+# skaffold run -p dev
+profiles:
+- name: base
+  manifests:
+    kustomize:
+      paths:
+        - envs/base
+- name: dev
+  manifests:
+    kustomize:
+      paths:
+        - envs/dev
+- name: prod
+  manifests:
+    kustomize:
+      paths:
+        - envs/prod
