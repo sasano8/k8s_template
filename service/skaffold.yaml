@@ -5,26 +5,15 @@ build:
     push: true
     useDockerCLI: true
   artifacts:
-  - image: 192.168.0.10:32000/mykubeapp1
-    context: ./apps/app1/
+  - image: 192.168.0.10:32000/app-python
+    context: ./apps/app-python/
     docker:
-      dockerfile: ./apps/app1/Dockerfile
-    # useBuildkit: true
-# manifests:
-#   rawYaml:
-#     - k8s/web.yaml
+      dockerfile: ./apps/app-python/Dockerfile
+  - image: 192.168.0.10:32000/app-go
+    context: ./apps/app-go/
+    docker:
+      dockerfile: ./apps/app-go/Dockerfile
 
-# manifests:
-#    kustomize:
-#       paths:
-#       # kustomize.yaml を含むディレクトリを指定
-#        - base
-#        - development
-#        - production
-
-# kustomize build overlays/development/ > dev-k8s.yaml
-
-# skaffold run -p dev
 profiles:
 - name: base
   manifests:
