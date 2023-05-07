@@ -1,3 +1,17 @@
+build-base:
+	@kustomize build envs/base
+
+build-dev:
+	@kustomize build envs/dev
+
+build-prod:
+	@kustomize build envs/prod
+
+run-dry:
+	@kustomize build envs/base > generated/base.yaml
+	@kustomize build envs/dev > generated/dev.yaml
+	@kustomize build envs/prod > generated/prod.yaml
+
 run:
 	@skaffold dev -p base --default-repo='192.168.0.10:32000' --insecure-registry 192.168.0.10:32000 --kube-context microk8s
 
