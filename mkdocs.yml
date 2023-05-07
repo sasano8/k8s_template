@@ -1,0 +1,6 @@
+site_name: My Docs
+
+nav:
+    - Home: index.md
+    - Install: install.md
+    - Install App: install_app.md
