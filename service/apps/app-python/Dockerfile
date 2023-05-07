@@ -1,8 +1,9 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
-COPY ./ /
+RUN pip install fastapi uvicorn kubernetes
 
-RUN pip install fastapi uvicorn
+
+COPY ./ /app
 
 EXPOSE 80
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "asgi:app", "--host", "0.0.0.0", "--port", "80"]

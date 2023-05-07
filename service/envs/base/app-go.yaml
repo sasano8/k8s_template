@@ -30,3 +30,12 @@ spec:
         ports:
           - containerPort: 80
         command: ["/app/webserver"]
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: "500m"
+            memory: "256Mi"
+
+
