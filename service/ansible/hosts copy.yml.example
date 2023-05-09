@@ -1,0 +1,30 @@
+---
+all:
+  # vars:
+  #   ansible_user: vagrant
+  #   ansible_password: vagrant
+  hosts:
+    marutamachi:
+      ansible_host: 192.168.xxx.1
+  children:
+    web:
+      vars:
+        http_port: 8080
+      hosts:
+        takeyamachi:
+          ansible_host: 192.168.xxx.2
+        ebisugawa:
+          ansible_host: 192.168.xxx.3
+        nijyo:
+          ansible_host: 192.168.xxx.4
+    mail:
+      hosts:
+        nijyo:
+    database:
+      hosts:
+        oshikoji:
+          ansible_host: 192.168.xxx.5
+          ansible_python_interpreter: /usr/bin/python3
+        oike:
+          ansible_host: 192.168.xxx.6
+          ansible_python_interpreter: /usr/libexec/platform-python

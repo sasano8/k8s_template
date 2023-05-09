@@ -21,6 +21,11 @@ delete:
 gen:
 	@helm template nats nats/nats --values helms/nats_ha.yaml > envs/base/nats-jet-stream.yaml  # skaffold と組み合わせると上手く動かない？
 
+show-volumes:
+	@echo "Persistent Volumes"
+	@kubectl get pv -A
+	@echo "Persistent Volumes Claims"
+	@kubectl get pvc -A
 
 tunnel:
 	@kubectl port-forward -n kube-system service/kubernetes-dashboard --address 0.0.0.0 10443:443

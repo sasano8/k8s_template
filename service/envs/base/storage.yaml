@@ -1,0 +1,55 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: hostpath
+provisioner: kubernetes.io/host-path
+reclaimPolicy: Delete
+# allowVolumeExpansion: true
+# mountOptions:
+#   - debug
+volumeBindingMode: WaitForFirstConsumer  # Claimが要求されたら作成
+# volumeBindingMode: Immediate  # Claimを必要とせず即時にバインド
+
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  # namespace: default  # Volumeはクラスタ全体で共有されるのでnamespaceを指定しない方がよい？
+  name: pv-myapp
+  labels:
+    type: local
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce  # 単一ノード限定
+    # - ReadOnlyMany
+    # - ReadWriteMany
+    # - ReadWriteOncePod  # 単一の Pod によって読み書き可能
+  persistentVolumeReclaimPolicy: Delete  # Retain: Claimを削除してもVolumeを残す Recycle: 非推奨
+  hostPath:
+    path: "/var/lib/my-mlops-data"
+
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  # namespace: default
+  name: disk-shared
+  # annotations:
+  #   volume.beta.kubernetes.io/storage-class: "default"
+spec:
+  # volumeName: pv-myapp
+  storageClassName: hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+
+# TODO: SeaweedFS, JuiceFS

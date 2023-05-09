@@ -9,3 +9,5 @@ resources:
 - app-python.yaml
 - app-go.yaml
 # - nats-jet-stream.yaml
+- storage.yaml
+
