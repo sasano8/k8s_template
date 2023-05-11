@@ -3,4 +3,7 @@ site_name: My Docs
 nav:
     - Home: index.md
     - Install: install.md
+        # install_ssh.md
+        # install_k8s.md
+        # install_kubectl.md
     - Install App: install_app.md
