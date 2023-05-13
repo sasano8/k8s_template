@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mypostgres-conf
+  namespace: default
+
+data:
+  data1: ""
+
+
+binaryData: {}

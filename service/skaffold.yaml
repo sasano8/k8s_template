@@ -13,6 +13,10 @@ build:
     context: ./apps/app-go/
     docker:
       dockerfile: ./apps/app-go/Dockerfile
+  - image: 192.168.0.10:32000/app-openresty
+    context: ./apps/app-openresty/
+    docker:
+      dockerfile: ./apps/app-openresty/Dockerfile
 
 profiles:
 - name: base

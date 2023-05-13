@@ -13,6 +13,7 @@ run-dry:
 	@kustomize build envs/prod > generated/prod.yaml
 
 run:
+	# docker が更新されない場合 --cache-artifacts=false
 	@skaffold dev -p base --default-repo='192.168.0.10:32000' --insecure-registry 192.168.0.10:32000 --kube-context microk8s
 
 delete:
