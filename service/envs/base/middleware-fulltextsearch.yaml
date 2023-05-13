@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: middleware-fulltextsearch
+spec:
+  ports:
+  - port: 3000
+    targetPort: 7700
+    name: http
+  type: LoadBalancer
+  selector:
+    app: middleware-fulltextsearch
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: middleware-fulltextsearch
+spec:
+  selector:
+    matchLabels:
+      app: middleware-fulltextsearch
+  template:
+    metadata:
+      labels:
+        app: middleware-fulltextsearch
+    spec:
+      # volumes:
+      # - name: my-volume
+      #   persistentVolumeClaim:
+      #     claimName: disk-shared
+      containers:
+      - name: middleware-fulltextsearch
+        image: getmeili/meilisearch:v1.1
+        ports:
+          - containerPort: 7700
+        # command: ["uvicorn", "asgi:app"]
+        # args: ["--host", "0.0.0.0", "--port", "80"]
+        # volumeMounts:
+        # - name: my-volume
+        #   mountPath: "/var/lib/my-mlops-data"
+        env:
+        - name: MEILI_ENV
+          value: "development"  # "production"  # developmentは検索プレビューが有効化
+        # - name: MEILI_MASTER_KEY
+        #   value: ""
+        # - name: MEILI_HTTP_ADDR
+        #   value: ""

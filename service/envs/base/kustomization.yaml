@@ -6,9 +6,9 @@ kind: Kustomization
 #   app: kustomize-example
 
 resources:
+- storage.yaml
 - app-python.yaml
 - app-go.yaml
 - app-openresty.yaml
 # - nats-jet-stream.yaml
-- storage.yaml
-
+- middleware-fulltextsearch.yaml
