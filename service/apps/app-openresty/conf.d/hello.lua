@@ -80,19 +80,17 @@ local buffer_size = 8192
 
 -- request_uri & read_body は一度にメモリに読み込んでしまう
 -- ただし、content-length を自動で計算してくれないなど、非互換な処理を考慮しなければいけない
-while true do
-    local chunk, err = reader(buffer_size)  -- チャンクサイズをバイトで指定します
+repeat
+    local buffer, err = reader(buffer_size)
     if err then
-        ngx.say("failed to read chunk: ", err)
-        return
-    end
-
-    if chunk then
-        ngx.print(chunk) -- print は改行なし。say は改行あり
-    else
+        ngx.log(ngx.ERR, err)
         break
     end
-end
+
+    if buffer then
+        ngx.print(buffer) -- print は改行なし。say は改行あり
+    end
+until not buffer
 
 
 -- 接続を閉じます
