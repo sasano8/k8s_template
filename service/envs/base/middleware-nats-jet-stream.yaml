@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: middleware-nats-jet-stream
+spec:
+  ports:
+  - port: 3000
+    targetPort: 4222
+    # name: http
+  type: LoadBalancer
+  selector:
+    app: middleware-nats-jet-stream
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: middleware-nats-jet-stream
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: middleware-nats-jet-stream
+  template:
+    metadata:
+      labels:
+        app: middleware-nats-jet-stream
+    spec:
+      containers:
+        - name: middleware-nats-jet-stream
+          image: nats:2.7.0-alpine
+          ports:
+            - containerPort: 4222

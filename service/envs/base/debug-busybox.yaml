@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: debug-busybox
+  name: debug-busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug-busybox
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: debug-busybox
+    spec:
+      containers:
+      - image: busybox
+        name: debug-busybox
+        imagePullPolicy: IfNotPresent
+        command:
+        - sleep
+        - "9999"
+        resources: {}
+status: {}

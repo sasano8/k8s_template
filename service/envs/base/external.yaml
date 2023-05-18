@@ -1,0 +1,13 @@
+# 外部通信先を管理
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice
+spec:
+  ports:
+    - name: web
+      port: 80
+  selector:
+    app: web
+  type: ExternalName
+  externalName: db.myexternalserver.com

@@ -17,6 +17,11 @@ build:
     context: ./apps/app-openresty/
     docker:
       dockerfile: ./apps/app-openresty/Dockerfile
+  - image: 192.168.0.10:32000/middleware-postgresql
+    context: ./apps/middleware-postgresql/
+    docker:
+      dockerfile: ./apps/middleware-postgresql/Dockerfile
+
 
 profiles:
 - name: base

@@ -10,5 +10,9 @@ resources:
 - app-python.yaml
 - app-go.yaml
 - app-openresty.yaml
-# - nats-jet-stream.yaml
+- middleware-nats-jet-stream.yaml  # stream の他に object storage key value store など 一人三役
 - middleware-fulltextsearch.yaml
+- middleware-postgresql.yaml
+- middleware-gitea.yaml
+# - openlinage: linageの標準化を目指すもの marquez: openlinage のリファレンス実装
+- debug-busybox.yaml

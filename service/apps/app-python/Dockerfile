@@ -1,6 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
-RUN pip install fastapi uvicorn kubernetes
+RUN pip install fastapi uvicorn kubernetes nats-py[nkeys]
 
 
 COPY ./ /app

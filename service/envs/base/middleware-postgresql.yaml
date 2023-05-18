@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: middleware-postgresql
+spec:
+  selector:
+    app: middleware-postgresql
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: middleware-postgresql
+spec:
+  selector:
+    matchLabels:
+      app: middleware-postgresql
+  template:
+    metadata:
+      labels:
+        app: middleware-postgresql
+    spec:
+      # volumes:
+      # - name: my-volume
+      #   persistentVolumeClaim:
+      #     claimName: disk-shared
+      containers:
+      - name: middleware-postgresql
+        # image: postgres:14
+        image: 192.168.0.10:32000/middleware-postgresql
+        ports:
+          - containerPort: 5432
+        # volumeMounts:
+        # - name: my-volume
+        #   mountPath: "/var/lib/my-mlops-data"
+        env:
+        - name: POSTGRES_DB
+          value: "postgres"
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "postgres"
