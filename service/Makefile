@@ -1,3 +1,8 @@
+MY_VAL := MYAPP
+
+show-val:
+	@echo $(MY_VAL)
+
 build-base:
 	@kustomize build envs/base
 
@@ -14,7 +19,16 @@ run-dry:
 
 dev:
 	# docker が更新されない場合 --cache-artifacts=false
+	# default-repoを指定するとイメージに自動で付与してくれるらしい
 	@skaffold dev -p base --default-repo='192.168.0.10:32000' --insecure-registry 192.168.0.10:32000 --kube-context microk8s
+
+
+# skaffold$ skaffold render \
+#   -p production \
+#   --default-repo xxx.dkr.ecr.ap-northeast-1.amazonaws.com \
+#   --offline=true \
+#   --loud=true \
+#   --output manifest.yaml
 
 delete:
 	@skaffold delete -p base --kube-context microk8s
@@ -56,3 +70,11 @@ install-argocd:
 docker-upload:
 	# giteaにはdocker registryが付属している。
 	@curl --user username:password http://192.168.0.10:32758/api/packages/testuser/generic/test_package/1.0.0/file.bin
+
+gen-secret:
+	@openssl rand -hex 32
+
+# sudo apt install sysstat
+stat:
+	@mpstat 1 1  # idle が多いほど負荷が少ない
+	@free -m  # available が空き容量

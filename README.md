@@ -1,5 +1,9 @@
 # プロジェクト
 
+# スケジュール管理
+
+- https://docs.google.com/spreadsheets/d/1Gu34gPMD5ZblKiCFWaUHLTEDYye_bWVtWNhvxccSEW8
+
 # 構築手順
 
 - [参照](docs/install.md)
@@ -34,3 +38,12 @@ ML Opsの文脈で使用される一般的なミドルウェア等をKubernets�
 - データを外部送信されたりすると困る
     - ネットワーク制限を行う
     - ネットワーク機能を使用せず、パイプラインでデータを連携する
+
+ここらへん参考になるかも。
+
+https://charmed-kubeflow.io/docs/get-started-with-charmed-kubeflow#heading--part-i-access-charmed-kubeflow
+
+
+# awasomes
+
+- https://github.com/opendatadiscovery/awesome-data-catalogs

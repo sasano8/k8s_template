@@ -4,6 +4,19 @@
 - memory: 1GB + α
 
 
+# DNS構築
+
+## nip.io
+
+nip.ioは、だれでも使用できる wildcard DNS サービスです。
+
+http://<target_ip>.nip.io
+
+とした時、target_ipにdomainを解決します。
+
+
+
+
 # 構築対象ホストの環境構築
 
 ```

@@ -25,19 +25,12 @@ spec:
       labels:
         app: middleware-postgresql
     spec:
-      # volumes:
-      # - name: my-volume
-      #   persistentVolumeClaim:
-      #     claimName: disk-shared
       containers:
       - name: middleware-postgresql
         # image: postgres:14
         image: 192.168.0.10:32000/middleware-postgresql
         ports:
           - containerPort: 5432
-        # volumeMounts:
-        # - name: my-volume
-        #   mountPath: "/var/lib/my-mlops-data"
         env:
         - name: POSTGRES_DB
           value: "postgres"
@@ -45,3 +38,11 @@ spec:
           value: "postgres"
         - name: POSTGRES_PASSWORD
           value: "postgres"
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          subPath: postgres
+          name: data-volume
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: disk-shared

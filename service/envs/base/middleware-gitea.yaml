@@ -35,9 +35,6 @@ spec:
           name: gitea
         # - containerPort: 22
         #   name: git-ssh
-        # volumeMounts:
-        # - name: my-volume
-        #   mountPath: "/var/lib/my-mlops-data"
         env:
         - name: USER_UID
           value: "1000"
@@ -59,12 +56,14 @@ spec:
           value: "meilisearch"
         - name: ISSUE_INDEXER_CONN_STR
           value: "middleware-fulltextsearch:3000"
-
-      # volumes:
-      # - name: my-volume
-      #   persistentVolumeClaim:
-      #     claimName: disk-shared
-
+        volumeMounts:
+        - mountPath: /data
+          subPath: gitea
+          name: data-volume
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: disk-shared
 
 # gitea:
 #     image: gitea/gitea:1.19.0

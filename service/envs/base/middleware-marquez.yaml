@@ -1,0 +1,14 @@
+# marquez
+  # postgres だけで動きそう
+
+# https://demo.datahubproject.io/
+# 機能的にdatahubが一番よさそうに見える。ただ、依存関係が多い。
+
+# https://github.com/datahub-project/datahub/blob/master/docker/docker-compose.yml
+# 依存関係が多い
+# mysql, elasticsearch, kafka, neo4j
+
+# amundsen
+  # elasticsearch
+
+
