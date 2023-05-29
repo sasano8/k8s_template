@@ -1,0 +1,14 @@
+# チャットアプリケーション
+
+# WebRTC
+#   - STUN: NATの背後にあるクライアント同士の通信を助ける仲介サーバー
+#   - TURN: NAT の設定やファイアウォールの振る舞いによっては UDP 通信が遮断されてしまう。信頼性の高いサービスを提供したい場合に利用する。
+#   - ICE: P2P通信を始めるために必要な一連のSTUNやTURNとの通信を手順を定めたプロトコル
+
+# XMPP: 古くから存在するチャットのプロトコル。ただし、商用チャット製品はベンダーロックインしたいので使われないことが多い。
+# Websocket: HTTP上で使用できる双方向通信プロトコル
+# Jitsi: WebRTCやSTUN/TURNを使用したビデオ会議などのOSS
+
+
+# annotationツール
+# https://github.com/heartexlabs/labelImg
